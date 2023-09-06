@@ -922,6 +922,13 @@ def FeatureStdExtSupm
 // Vendor extensions
 //===----------------------------------------------------------------------===//
 
+def FeatureVendorXOTBN
+    : SubtargetFeature<"xotbn", "HasVendorXOTBN", "true",
+                       "'XOTBN' (OpenTitan Big Number)">;
+def HasVendorXOTBN : Predicate<"Subtarget->hasVendorXOTBN()">,
+                                AssemblerPredicate<(all_of FeatureVendorXOTBN),
+                                "'XOTBN' (OpenTitan Big Number)">;
+
 // Ventana Extenions
 
 def FeatureVendorXVentanaCondOps
