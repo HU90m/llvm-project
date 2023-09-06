@@ -16,6 +16,13 @@
 
 def OPC_BN_OP : RISCVOpcode<"BN_OP", 0b0101011>;
 
+// These should be i256, but it's not available so using the i32 type for now.
+def WR : RegisterClass<"RISCV", [i32], 32, (sequence "W%u", 0, 31)>;
+
+foreach n = 0-31 in {
+  def "W" # n  : RISCVReg<n, "w" # n>;
+}
+
 let
     Predicates = [IsRV32, HasVendorXOTBN],
     DecoderNamespace = "XOTBN"
@@ -42,7 +49,7 @@ in {
 
   let hasSideEffects = 0, mayLoad = 0, mayStore = 0 in
   class ALU_bn<bits<3> funct3, string opcodestr, bit Commutable = 0>
-      : RVInstBNBase<funct3, OPC_BN_OP, (outs GPR:$wrd), (ins GPR:$wrs1, GPR:$wrs2),
+      : RVInstBNBase<funct3, OPC_BN_OP, (outs WR:$wrd), (ins WR:$wrs1, WR:$wrs2),
                 opcodestr, "$wrd, $wrs1, $wrs2"> {
     let isCommutable = Commutable;
     let fg = 0;

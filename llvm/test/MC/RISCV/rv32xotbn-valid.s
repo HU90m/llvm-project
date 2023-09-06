@@ -4,10 +4,9 @@
 # RUN:     | llvm-objdump --mattr=+xotbn -d -r - \
 # RUN:     | FileCheck --check-prefix=CHECK-ASM-AND-OBJ %s
 
-# CHECK-ASM-AND-OBJ: bn.add t0, t1, t1
-# CHECK-ASM: encoding: [0xab,0x02,0x63,0x00]
-bn.add t0, t1, t1
+# CHECK-ASM-AND-OBJ: bn.add w0, w1, w31
+bn.add w0, w1, w31
 
-# CHECK-ASM-AND-OBJ: bn.sub t0, t1, t1
+# CHECK-ASM-AND-OBJ: bn.sub w5, w6, w6
 # CHECK-ASM: encoding: [0xab,0x12,0x63,0x00]
-bn.sub t0, t1, t1
+bn.sub w5, w6, w6
