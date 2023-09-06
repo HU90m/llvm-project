@@ -16,9 +16,6 @@
 
 def OPC_BN_OP : RISCVOpcode<"BN_OP", 0b0101011>;
 
-def Write_BN_ALU : SchedWrite; // 32 or 64-bit big number ALU operations
-def Read_BN_ALU  : SchedRead;
-
 let
     Predicates = [IsRV32, HasVendorXOTBN],
     DecoderNamespace = "XOTBN"
@@ -53,9 +50,6 @@ in {
     let sb = 0;
   }
 
-  def BN_ADD  : ALU_bn<0b000, "bn.add", Commutable=1>,
-                Sched<[WriteIALU, ReadIALU, ReadIALU]>;
-
-  def BN_SUB  : ALU_bn<0b001, "bn.sub", Commutable=0>,
-                Sched<[WriteIALU, ReadIALU, ReadIALU]>;
+  def BN_ADD : ALU_bn<0b000, "bn.add", Commutable=1>;
+  def BN_SUB : ALU_bn<0b001, "bn.sub", Commutable=0>;
 } // DecoderNamespace = "XOTBN"
