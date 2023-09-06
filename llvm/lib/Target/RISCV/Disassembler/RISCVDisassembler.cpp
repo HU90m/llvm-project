@@ -527,6 +527,8 @@ DecodeStatus RISCVDisassembler::getInstruction(MCInst &MI, uint64_t &Size,
                   "RV32Zdinx table (Double in Integer and rv32)");
     TRY_TO_DECODE_FEATURE(RISCV::FeatureStdExtZfinx, DecoderTableRVZfinx32,
                           "RVZfinx table (Float in Integer)");
+    TRY_TO_DECODE_FEATURE(RISCV::FeatureVendorXOTBN, DecoderTableXOTBN32,
+                          "OpenTitan Big Number custom opcode table");
     TRY_TO_DECODE_FEATURE(RISCV::FeatureVendorXVentanaCondOps,
                           DecoderTableXVentana32, "Ventana custom opcode table");
     TRY_TO_DECODE_FEATURE(RISCV::FeatureVendorXTHeadBa, DecoderTableXTHeadBa32,

@@ -712,6 +712,13 @@ def HasStdExtZacas : Predicate<"Subtarget->hasStdExtZacas()">,
 // Vendor extensions
 //===----------------------------------------------------------------------===//
 
+def FeatureVendorXOTBN
+    : SubtargetFeature<"xotbn", "HasVendorXOTBN", "true",
+                       "'XOTBN' (OpenTitan Big Number)">;
+def HasVendorXOTBN : Predicate<"Subtarget->hasVendorXOTBN()">,
+                                AssemblerPredicate<(all_of FeatureVendorXOTBN),
+                                "'XOTBN' (OpenTitan Big Number)">;
+
 def FeatureVendorXVentanaCondOps
     : SubtargetFeature<"xventanacondops", "HasVendorXVentanaCondOps", "true",
                        "'XVentanaCondOps' (Ventana Conditional Ops)">;
