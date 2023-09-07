@@ -5,6 +5,7 @@
 # RUN:     | FileCheck --check-prefix=CHECK-ASM-AND-OBJ %s
 
 # CHECK-ASM-AND-OBJ: bn.add w0, w1, w31
+# CHECK-ASM: encoding: [0x2b,0x80,0xf0,0x01]
 bn.add w0, w1, w31
 
 # CHECK-ASM-AND-OBJ: bn.sub w5, w6, w6
