@@ -19,6 +19,14 @@ def OPC_BN_OP : RISCVOpcode<"BN_OP", 0b0101011>;
 // These should be i256, but it's not available so using the i32 type for now.
 def WR : RegisterClass<"RISCV", [i32], 32, (sequence "W%u", 0, 31)>;
 
+def BNShiftArg : AsmOperandClass {
+  let Name = "BNShiftArg";
+  let RenderMethod = "addBNShiftArgOperands";
+  let ParserMethod = "parseBNShiftArg";
+  let IsOptional = 1;
+  let DefaultMethod = "defaultBNShiftArgOp";
+}
+
 foreach n = 0-31 in {
   def "W" # n  : RISCVReg<n, "w" # n>;
 }
